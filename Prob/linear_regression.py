@@ -9,6 +9,8 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 
+
+
 loansData=pd.read_csv('loansData.csv')
 
 loansData['Interest.Rate']=[float(interest[0:-1])/100 for interest in loansData['Interest.Rate']]
@@ -27,7 +29,9 @@ x=np.column_stack([x1,x2])
 
 X=sm.add_constant(x)
 model=sm.OLS(y,X)
+
 f=model.fit()
 
 print(f.summary())
 
+loansData.to_csv('loansData_clean.csv',header=True, index=False)
